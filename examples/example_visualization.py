@@ -7,7 +7,7 @@ W = Zonotope([0, 0], [[1, 0.5, -0.3], [-0.5, 0.7, 0.1]])
 
 fig, ax = plt.subplots()
 
-collection = PatchCollection([W.polygon], alpha=0.4, color='red')
+collection = PatchCollection([W.polygon],  facecolor='lightblue', edgecolor='black', lw=2)
 ax.set_xlim(-2, 2)
 ax.set_ylim(-2, 2)
 
