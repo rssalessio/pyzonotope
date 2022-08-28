@@ -9,6 +9,7 @@ from scipy.special import comb
 from scipy.spatial import ConvexHull
 from pyzonotope.interval import Interval
 from pyzonotope.interval_matrix import IntervalMatrix
+from matplotlib.patches import Polygon
 
 class Zonotope(object):
     """
@@ -277,19 +278,18 @@ class Zonotope(object):
         res = problem.solve()
         return res, self.center + self.generators @ beta.value, beta.value
 
-        
-            
+    @property
+    def polygon(self) -> Polygon:
+        """
+        Returns a matplotlib polygon that can be used to plot the zonotope.
+        Can be used only for 2D zonotopes
+        """
+        assert self.dimension == 2, 'Zonotope is not 2d.'
 
+        vertices = self.compute_vertices()
 
-            
-
-c = np.ones((10, 1))
-g = 5e-3 * np.ones((10, 1))
-W = Zonotope(c, g)
-
-Z = W * 10.0
-# print(W)
-# print(Z)
-
-x = Z.sample(2)
-#print(x.shape)
+        # Order vertices according to their angle
+        keys = np.arctan2(vertices[:, 1] - self.center[1], vertices[:,0] - self.center[0])
+        vertices = vertices[np.argsort(keys)]
+        vertices = np.vstack((vertices, vertices[0]))
+        return Polygon(vertices)
