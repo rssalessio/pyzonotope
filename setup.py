@@ -4,7 +4,7 @@ from os import path
 
 setup(name = 'pyzonotope',
     packages=find_packages(),
-    version = '0.0.4',
+    version = '0.0.5',
     description = 'Zonotopes in Python',
     url = 'https://github.com/rssalessio/pyzonotope',
     author = 'Alessio Russo',

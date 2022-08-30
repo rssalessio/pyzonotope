@@ -6,7 +6,7 @@ from .utils import concatenate_zonotope
 from .cvx_zonotope import CVXZonotope
 
 __author__ = 'Alessio Russo - alessior@kth.se'
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __url__ = 'https://github.com/rssalessio/py-zonotopes'
 __info__ = {
     'version': __version__,

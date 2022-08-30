@@ -210,7 +210,7 @@ class Zonotope(object):
             dim, num_generators = generators.shape
 
             h = np.linalg.norm(generators, ord=1, axis=0) - np.linalg.norm(generators, ord=np.infty, axis=0)
-            n_unreduced = int(np.floor(dim * (order - 1)))
+            n_unreduced = max(0, int(np.floor(dim * (order - 1))))
             n_reduced = num_generators - n_unreduced
             idxs = np.argpartition(h, n_reduced - 1)
             generators_reduced = generators[:, idxs[: n_reduced]]
